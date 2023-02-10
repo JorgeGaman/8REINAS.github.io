@@ -4,33 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      table {
-        border: 1px solid;
-        border-collapse: collapse;
-      }
-      tr {
-        border: 1px solid;
-        border-collapse: collapse;
-      }
-      td {
-        border: 1px solid;
-        border-collapse: collapse;
-        width: 50px;
-        height: 50px;
-      }
-      tr:nth-child(even) td:nth-child(even),
-      tr:nth-child(odd) td:nth-child(odd) {
-        background-color: black;
-      }
-      tr:nth-child(odd) td:nth-child(even),
-      tr:nth-child(odd) td:nth-child(even) {
-        background-color: white;
-      }
-      div {
-        font-size: xx-large;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <title>8 REINAS</title>
     <script>
       var contador = 0;
@@ -89,7 +63,7 @@
           "background-image:url(/assets/images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
         celdas.rows[6].cells[5].style =
           "background-image:url(/assets/images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[7].cells[6].style =
+        celdas.rows[7].cells[0].style =
           "background-image:url(/assets/images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
       }
       function solucion2() {
@@ -115,6 +89,8 @@
     </script>
   </head>
   <body>
+    <h1>JUEGO DE LAS 8 REINAS</h1>
+
     <table id="tabla_ajedrez">
       <tr>
         <td onclick="celdaclick(this)"></td>
@@ -199,10 +175,11 @@
       </tr>
     </table>
     <div id="div_contador">Reinas colocadas: 0</div>
-
-    <button onclick="simulacion()">Simulación</button>
-    <button onclick="reiniciar(0)">Reiniciar</button>
-    <button onclick="solucion1()">Solucion 1</button>
-    <button onclick="solucion2()">Solucion 2</button>
+    <div class="contenedor">
+      <button onclick="simulacion()">Simulación</button>
+      <button onclick="reiniciar(0)">Reiniciar</button>
+      <button onclick="solucion1()">Solucion 1</button>
+      <button onclick="solucion2()">Solucion 2</button>
+    </div>
   </body>
 </html>
