@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
-
+    <audio id="sonido-reina">
+      <source src="audio/colocar-reina.mp3" type="audio/mpeg" />
+      Tu navegador no soporta el elemento audio.
+    </audio>
     <title>8 REINAS</title>
     <script>
       var contador = 0;
@@ -16,6 +19,8 @@
             contador++;
             ana.style =
               "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center;";
+            sonidoReina.currentTime = 0;
+            sonidoReina.play();
           }
         } else {
           contador--;
@@ -27,11 +32,27 @@
       }
 
       function simulacion() {
+        var modal = document.getElementById("modal");
+        var modalTexto = document.getElementById("modal-texto");
+        var cerrar = document.getElementsByClassName("cerrar")[0];
+
         if (contador == 8) {
-          alert("El juego de las 8 reinas ha sido completado");
+          modalTexto.innerHTML =
+            "¡Completaste el juego de las 8 reinas correctamente!";
         } else {
-          alert("El juego de las 8 reinas no ha sido completado");
+          modalTexto.innerHTML =
+            "El juego de las 8 reinas no ha sido completado";
         }
+
+        modal.style.display = "block";
+        cerrar.onclick = function () {
+          modal.style.display = "none";
+        };
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        };
       }
 
       function reiniciar(cont) {
@@ -47,45 +68,38 @@
         document.getElementById("div_contador").innerHTML =
           "Reinas colocadas:" + contador;
       }
+
+      var estilo =
+        "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #CC0000;";
+      var sonidoReina = document.getElementById("sonido-reina");
+
       function solucion1() {
         reiniciar(8);
         var celdas = document.getElementById("tabla_ajedrez");
-        celdas.rows[0].cells[4].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[1].cells[1].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[2].cells[3].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[3].cells[6].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[4].cells[2].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[5].cells[7].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[6].cells[5].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[7].cells[0].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
+        sonidoReina.currentTime = 0;
+        sonidoReina.play();
+        celdas.rows[0].cells[4].style = estilo;
+        celdas.rows[1].cells[1].style = estilo;
+        celdas.rows[2].cells[3].style = estilo;
+        celdas.rows[3].cells[6].style = estilo;
+        celdas.rows[4].cells[2].style = estilo;
+        celdas.rows[5].cells[7].style = estilo;
+        celdas.rows[6].cells[5].style = estilo;
+        celdas.rows[7].cells[0].style = estilo;
       }
       function solucion2() {
         reiniciar(8);
+        sonidoReina.currentTime = 0;
+        sonidoReina.play();
         var celdas = document.getElementById("tabla_ajedrez");
-        celdas.rows[0].cells[4].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[1].cells[2].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[2].cells[7].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[3].cells[3].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[4].cells[6].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[5].cells[0].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[6].cells[5].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
-        celdas.rows[7].cells[1].style =
-          "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #ff0000;";
+        celdas.rows[0].cells[4].style = estilo;
+        celdas.rows[1].cells[2].style = estilo;
+        celdas.rows[2].cells[7].style = estilo;
+        celdas.rows[3].cells[3].style = estilo;
+        celdas.rows[4].cells[6].style = estilo;
+        celdas.rows[5].cells[0].style = estilo;
+        celdas.rows[6].cells[5].style = estilo;
+        celdas.rows[7].cells[1].style = estilo;
       }
     </script>
   </head>
@@ -105,7 +119,7 @@
       </tr>
 
       <tr>
-        <td></td>
+        <td onclick="celdaclick(this)"></td>
         <td onclick="celdaclick(this)"></td>
         <td onclick="celdaclick(this)"></td>
         <td onclick="celdaclick(this)"></td>
@@ -178,6 +192,12 @@
     <div id="div_contador">Reinas colocadas: 0</div>
     <div class="contenedor">
       <button onclick="simulacion()">Simulación</button>
+      <div id="modal" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar">&times;</span>
+          <p id="modal-texto"></p>
+        </div>
+      </div>
       <button onclick="reiniciar(0)">Reiniciar</button>
       <button onclick="solucion1()">Solucion 1</button>
       <button onclick="solucion2()">Solucion 2</button>
