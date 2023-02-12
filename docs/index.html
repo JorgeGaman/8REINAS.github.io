@@ -9,6 +9,14 @@
       <source src="audio/colocar-reina.mp3" type="audio/mpeg" />
       Tu navegador no soporta el elemento audio.
     </audio>
+    <audio id="sonido-completo">
+      <source src="audio/juego-completo.mp3" type="audio/mpeg" />
+      Tu navegador no soporta el elemento audio.
+    </audio>
+    <audio id="sonido-incompleto">
+      <source src="audio/juego-incompleto.wav" type="audio/mpeg" />
+      Tu navegador no soporta el elemento audio.
+    </audio>
     <title>8 REINAS</title>
     <script>
       var contador = 0;
@@ -39,9 +47,13 @@
         if (contador == 8) {
           modalTexto.innerHTML =
             "¡Completaste el juego de las 8 reinas correctamente!";
+          sonidoCompleto.currentTime = 0;
+          sonidoCompleto.play();
         } else {
           modalTexto.innerHTML =
             "El juego de las 8 reinas no ha sido completado";
+          sonidoIncompleto.currentTime = 0;
+          sonidoIncompleto.play();
         }
 
         modal.style.display = "block";
@@ -72,6 +84,8 @@
       var estilo =
         "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #CC0000;";
       var sonidoReina = document.getElementById("sonido-reina");
+      var sonidoCompleto = document.getElementById("sonido-completo");
+      var sonidoIncompleto = document.getElementById("sonido-incompleto");
 
       function solucion1() {
         reiniciar(8);
