@@ -40,22 +40,83 @@
       }
 
       function simulacion() {
+        if (contador !== 8) {
+          var modal = document.getElementById("modal");
+          var modalTexto = document.getElementById("modal-texto");
+          var cerrar = document.getElementsByClassName("cerrar")[0];
+          modalTexto.innerHTML =
+            "El juego de las 8 reinas no ha sido completado";
+          modal.style.display = "block";
+          cerrar.onclick = function () {
+            modal.style.display = "none";
+          };
+          window.onclick = function (event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          };
+          return;
+        }
+        var celdas = document
+          .getElementById("tabla_ajedrez")
+          .getElementsByTagName("td");
+        var reinas = [];
+        for (var i = 0; i < celdas.length; i++) {
+          if (window.getComputedStyle(celdas[i]).backgroundImage !== "none") {
+            reinas.push([Math.floor(i / 8), i % 8]);
+          }
+        }
+
+        for (var i = 0; i < reinas.length; i++) {
+          for (var j = i + 1; j < reinas.length; j++) {
+            if (
+              reinas[i][0] === reinas[j][0] ||
+              reinas[i][1] === reinas[j][1]
+            ) {
+              var modal = document.getElementById("modal");
+              var modalTexto = document.getElementById("modal-texto");
+              var cerrar = document.getElementsByClassName("cerrar")[0];
+              modalTexto.innerHTML =
+                "Las reinas están en la misma fila o columna";
+              modal.style.display = "block";
+              cerrar.onclick = function () {
+                modal.style.display = "none";
+              };
+              window.onclick = function (event) {
+                if (event.target == modal) {
+                  modal.style.display = "none";
+                }
+              };
+              return;
+            }
+
+            if (
+              Math.abs(reinas[i][0] - reinas[j][0]) ===
+              Math.abs(reinas[i][1] - reinas[j][1])
+            ) {
+              var modal = document.getElementById("modal");
+              var modalTexto = document.getElementById("modal-texto");
+              var cerrar = document.getElementsByClassName("cerrar")[0];
+              modalTexto.innerHTML = "Las reinas están en la misma diagonal";
+              modal.style.display = "block";
+              cerrar.onclick = function () {
+                modal.style.display = "none";
+              };
+              window.onclick = function (event) {
+                if (event.target == modal) {
+                  modal.style.display = "none";
+                }
+              };
+              return;
+            }
+          }
+        }
+        // Si no se encontraron reinas en la misma fila, columna o diagonal, significa que el juego está completado correctamente
         var modal = document.getElementById("modal");
         var modalTexto = document.getElementById("modal-texto");
         var cerrar = document.getElementsByClassName("cerrar")[0];
-
-        if (contador == 8) {
-          modalTexto.innerHTML =
-            "¡Completaste el juego de las 8 reinas correctamente!";
-          sonidoCompleto.currentTime = 0;
-          sonidoCompleto.play();
-        } else {
-          modalTexto.innerHTML =
-            "El juego de las 8 reinas no ha sido completado";
-          sonidoIncompleto.currentTime = 0;
-          sonidoIncompleto.play();
-        }
-
+        modalTexto.innerHTML =
+          "El juego de las 8 reinas se ha completado correctamente";
         modal.style.display = "block";
         cerrar.onclick = function () {
           modal.style.display = "none";
@@ -68,7 +129,6 @@
       }
 
       function reiniciar(cont) {
-        // alert("hola :D");
         var celdas = document
           .getElementById("tabla_ajedrez")
           .getElementsByTagName("td");
@@ -213,8 +273,8 @@
         </div>
       </div>
       <button onclick="reiniciar(0)">Reiniciar</button>
-      <button onclick="solucion1()">Solucion 1</button>
-      <button onclick="solucion2()">Solucion 2</button>
+      <button onclick="solucion1()">Solución 1</button>
+      <button onclick="solucion2()">Solución 2</button>
     </div>
   </body>
 </html>
