@@ -38,7 +38,7 @@
         document.getElementById("div_contador").innerHTML =
           "Reinas colocadas:" + contador;
       }
-
+      // funcion para comprobar que se cumplen las reglas de las reinas con un modal para mostrar resultados.
       function simulacion() {
         if (contador !== 8) {
           var modal = document.getElementById("modal");
@@ -46,6 +46,8 @@
           var cerrar = document.getElementsByClassName("cerrar")[0];
           modalTexto.innerHTML =
             "El juego de las 8 reinas no ha sido completado";
+          sonidoIncompleto.currentTime = 0;
+          sonidoIncompleto.play();
           modal.style.display = "block";
           cerrar.onclick = function () {
             modal.style.display = "none";
@@ -66,7 +68,8 @@
             reinas.push([Math.floor(i / 8), i % 8]);
           }
         }
-
+        /* Usando un for anidado se toma la posicion de las reinas y se comprueba si estas estan en las mismas 
+        o columnas */
         for (var i = 0; i < reinas.length; i++) {
           for (var j = i + 1; j < reinas.length; j++) {
             if (
@@ -78,6 +81,8 @@
               var cerrar = document.getElementsByClassName("cerrar")[0];
               modalTexto.innerHTML =
                 "Las reinas están en la misma fila o columna";
+              sonidoIncompleto.currentTime = 0;
+              sonidoIncompleto.play();
               modal.style.display = "block";
               cerrar.onclick = function () {
                 modal.style.display = "none";
@@ -89,7 +94,7 @@
               };
               return;
             }
-
+            // Se comprueba la posicion de cada reina para que no verificar que no esten en la misma diagonal.
             if (
               Math.abs(reinas[i][0] - reinas[j][0]) ===
               Math.abs(reinas[i][1] - reinas[j][1])
@@ -98,6 +103,8 @@
               var modalTexto = document.getElementById("modal-texto");
               var cerrar = document.getElementsByClassName("cerrar")[0];
               modalTexto.innerHTML = "Las reinas están en la misma diagonal";
+              sonidoIncompleto.currentTime = 0;
+              sonidoIncompleto.play();
               modal.style.display = "block";
               cerrar.onclick = function () {
                 modal.style.display = "none";
@@ -117,6 +124,8 @@
         var cerrar = document.getElementsByClassName("cerrar")[0];
         modalTexto.innerHTML =
           "El juego de las 8 reinas se ha completado correctamente";
+        sonidoCompleto.currentTime = 0;
+        sonidoCompleto.play();
         modal.style.display = "block";
         cerrar.onclick = function () {
           modal.style.display = "none";
@@ -140,12 +149,15 @@
         document.getElementById("div_contador").innerHTML =
           "Reinas colocadas:" + contador;
       }
-
+      // Variables de uso para los efectos de sonido y el estilo de las reinas.
       var estilo =
         "background-image:url(./images/2x1.png); background-repeat:no-repeat; background-size: contain; background-position: center; background-color: #CC0000;";
       var sonidoReina = document.getElementById("sonido-reina");
       var sonidoCompleto = document.getElementById("sonido-completo");
       var sonidoIncompleto = document.getElementById("sonido-incompleto");
+      // Variables para colorear casillas de rango de reinas
+      var estilo2 =
+        "background-image:url(./images/circulo-revision.png); background-repeat: no-repeat; background-size: contain; background-position: center; background-color: #CC0000";
 
       function solucion1() {
         reiniciar(8);
