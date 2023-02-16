@@ -3,7 +3,7 @@
 El objetivo es colocar 8 reinas en un tablero de ajedrez de manera que ninguna reina pueda atacar a otra, 
 es decir, ninguna reina puede estar en la misma fila, columna o diagonal que otra reina.
 
-![Diseño juego 8 reinas](docs/images/8Queens.png)
+![Diseño juego 8 reinas](docs/images/8Queens.jpg)
 ## Requisitos
 > Para ejecutar el juego, necesitarás un navegador web compatible con JavaScript y HTML5.
 
