@@ -58,12 +58,6 @@ h1 {
   color: #333;
   margin-top: 20px;
 }
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-}
 /* Estilo contador de reinas */
 #div_contador {
   text-align: center;
